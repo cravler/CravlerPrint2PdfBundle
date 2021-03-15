@@ -1,0 +1,33 @@
+{
+    "name": "cravler/print2pdf-bundle",
+    "type": "symfony-bundle",
+    "description": "PDF generation from a url or a html page",
+    "keywords": [
+        "pdf",
+        "generator",
+        "Symfony"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergei Vizel",
+            "email": "sergei.vizel@gmail.com",
+            "homepage": "http://github.com/cravler"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "symfony/framework-bundle": "~4.4|^5.0"
+    },
+    "autoload": {
+        "psr-4": { "Cravler\\Print2PdfBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "modera-module": {
+            "register-bundle": "Cravler\\Print2PdfBundle\\CravlerPrint2PdfBundle"
+        }
+    }
+}

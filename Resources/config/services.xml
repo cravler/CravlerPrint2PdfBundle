@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="cravler_print2pdf.service.print2pdf"
+                 class="Cravler\Print2PdfBundle\Service\Print2Pdf"
+                 public="true">
+        </service>
+        <service id="Cravler\Print2PdfBundle\Service\Print2Pdf" alias="cravler_print2pdf.service.print2pdf" />
+    </services>
+
+</container>
