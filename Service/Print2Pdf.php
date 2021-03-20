@@ -3,6 +3,7 @@
 namespace Cravler\Print2PdfBundle\Service;
 
 use Symfony\Component\Process\Process;
+use Cravler\Print2PdfBundle\Validator\OptionsValidator;
 
 /**
  * @author Sergei Vizel <sergei.vizel@gmail.com>
@@ -17,7 +18,7 @@ class Print2Pdf
     /**
      * @var array
      */
-    private array $options;
+    private array $defaultOptions;
 
     /**
      * @var string
@@ -30,10 +31,10 @@ class Print2Pdf
      * @param array $options
      * @param string|null $temporaryFolder
      */
-    public function __construct(string $binary, array $options = array(), string $temporaryFolder = null)
+    public function __construct(string $binary, array $defaultOptions = array(), string $temporaryFolder = null)
     {
         $this->binary = $binary;
-        $this->options = $options;
+        $this->defaultOptions = $defaultOptions;
         $this->temporaryFolder = $temporaryFolder ?: sys_get_temp_dir();
     }
 
@@ -44,13 +45,12 @@ class Print2Pdf
      */
     public function generate(string $url, array $options = array()): string
     {
-        $allowed  = array_keys($this->options);
-        $options = array_filter($options, fn ($key) => in_array($key, $allowed), ARRAY_FILTER_USE_KEY);
+        OptionsValidator::validate($options);
 
         $command = array(
             $this->binary,
         );
-        foreach (array_merge($this->options, $options) as $key => $value) {
+        foreach (array_merge($this->defaultOptions, $options) as $key => $value) {
             $flag = '--' . str_replace('_', '-', $key);
             if (is_bool($value)) {
                 if (true === $value) {

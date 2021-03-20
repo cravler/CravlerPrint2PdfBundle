@@ -26,7 +26,7 @@ class CravlerPrint2PdfExtension extends Extension
         $loader->load('services.xml');
 
         $container->findDefinition('cravler_print2pdf.service.print2pdf')->setArguments(
-            array($config['binary'], $config['options'], $config['temporary_folder'])
+            array($config['binary'], $config['default_options'], $config['temporary_folder'])
         );
     }
 }
